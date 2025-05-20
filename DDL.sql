@@ -42,4 +42,75 @@ CREATE TABLE Tipo_De_Pago(
 	Id_Tip_Pago INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tipos VARCHAR (20) NOT NULL
 );
+CREATE TABLE usuario(
+ID_Usuario INT(10) PRIMARY KEY auto_increment,
+NomUsu VARCHAR(50) NOT NULL,
+apell1 VARCHAR (50) NOT NULL,
+apell2 VARCHAR(50),
+tel1 BINARY(20) NOT NULL,
+tel2 BINARY(20),
+ID_TipDoc TINYINT(3),
+correo VARCHAR(50) NOT NULL,
+NumDoc VARCHAR(20) NOT NULL,
+Password VARCHAR(10) NOT NULL
+);
+CREATE TABLE Pedidos(
+ID_Pedido INT(10) PRIMARY KEY auto_increment,
+ID_Usuario INT(10),
+FeHor_Ped TIMESTAMP NOT NULL,
+Estado INT(10)NOT NULL,
+ID_Guia INT(10)
+);
+CREATE TABLE Compra(
+ID_Compra INT(10) PRIMARY KEY auto_increment,
+ID_TiPago INT(10),
+total DECIMAL(10,2)NOT NULL,
+Ref_Pago VARCHAR(30)NOT NULL,
+Fec_com DATE NOT NULL,
+ID_Pedido INT(10)
+);
+CREATE TABLE Producto(
+ID_Producto INT(10) PRIMARY KEY auto_increment,
+ID_Medida INT(10),
+NomProd VARCHAR(50)NOT NULL,
+Valor DECIMAL(10,2) NOT NULL,
+Cant NUMERIC(19,0) NOT NULL,
+ID_Tienda INT(10),
+Imagen VARCHAR(50),
+Descrip VARCHAR(50)
+);
+CREATE TABLE Rol_Usuario(
+ID_Rol INT(10),
+ID_Usuario INT(10),
+Estado BINARY(1) NOT NULL
+);
+CREATE TABLE Reembolsos(
+ID_Reembolso INT(10) PRIMARY KEY auto_increment,
+Fec_Soli DATE NOT NULL,
+Valor NUMERIC(20,2) NOT NULL,
+Motivo VARCHAR(50),
+Fec_Resp DATE NOT NULL,
+Estado VARCHAR(20) NOT NULL,
+ID_Com_Produc INT(10)
+);
+CREATE TABLE Comp_Produc(
+ID_Com_Produc INT(10) PRIMARY KEY auto_increment,
+ID_Compra INT(10),
+ID_Producto INT(10),
+Cant NUMERIC(19,2) NOT NULL,
+Valor DECIMAL(10,2) NOT NULL
+);
+CREATE TABLE Guia_de_Envio (
+ID_Guia INT (10) PRIMARY KEY auto_increment,
+ID_Transpor INT (10),
+Fec_Env DATE NOT NULL,
+Obser VARCHAR(50) NOT NULL
+);
+CREATE TABLE R_Social (
+ID_Guia INT (10) PRIMARY KEY auto_increment,
+ID_Transpor INT (10),
+Fec_Env DATE NOT NULL,
+Obser VARCHAR(50) NOT NULL
+);
+
 
