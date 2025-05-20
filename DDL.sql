@@ -106,11 +106,48 @@ ID_Transpor INT (10),
 Fec_Env DATE NOT NULL,
 Obser VARCHAR(50) NOT NULL
 );
-CREATE TABLE R_Social (
-ID_Guia INT (10) PRIMARY KEY auto_increment,
-ID_Transpor INT (10),
-Fec_Env DATE NOT NULL,
-Obser VARCHAR(50) NOT NULL
+CREATE TABLE Direcciones (
+ID_Direcc INT(10)PRIMARY KEY auto_increment,
+ID_Vias INT(10),
+num VARCHAR(10)NOT NULL, 
+comple VARCHAR(50) NOT NULL,
+Ubi_Geo VARCHAR (20) NOT NULL,
+ID_Usuario INT(10),
+ID_Barrio INT(10)
 );
-
-
+CREATE TABLE Barrio(
+ID_Barrio INT(10)PRIMARY KEY auto_increment,
+Nom VARCHAR(50)NOT NULL,
+ID_Muni INT(10)
+);
+CREATE TABLE Produc_Desc(
+ID_Producto INT(10),
+ID_Descuentos INT(10)
+);
+CREATE TABLE Ingres_Produc(
+ID_Producto INT(10),
+ID_Ingreso INT(10),
+cant NUMERIC (20,2)
+);
+CREATE TABLE Tienda(
+ID_Tienda INT(10)PRIMARY KEY auto_increment,
+ID_Direcc INT(10),
+NomT VARCHAR(50),
+Logo VARCHAR(50),
+ID_Usuario INT(10),
+ID_R_Social INT(10)
+);
+CREATE TABLE R_Social(
+ID_R_Social INT(10),
+Nombre VARCHAR(30),
+NIT INT(10),
+Sucur INT(10),
+ID_Usuario INT(10)
+);
+CREATE TABLE Pedi_Produc(
+ID_Producto INT(10),
+ID_Medida INT(10),
+NomProd VARCHAR(50),
+valor DECIMAL(30,0) NOT NULL,
+cant NUMERIC(10,2)NOT NULL
+);
