@@ -37,4 +37,149 @@ END$$
 
 DELIMITER ;
 
+SE `comuctiva`;
+DROP procedure IF EXISTS `usuario`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `usuario` (
+IN ID_Usuario INT(10),
+IN NomUsu VARCHAR(50),
+IN apell1 VARCHAR (50),
+IN apell2 VARCHAR(50),
+IN tel1 BINARY(20),
+IN tel2 BINARY(20),
+IN ID_TipDoc TINYINT(3),
+IN correo VARCHAR(50),
+IN NumDoc VARCHAR(20),
+IN Password VARCHAR(10)
+)
+BEGIN
+Insert into usuario(ID_Usuario,NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password)
+VALUES (ID_Usuario,NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password);
+END$$
+
+DELIMITER ;
+
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Pedidos`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Pedidos` (
+IN ID_Pedido INT(10),
+IN ID_Usuario INT(10),
+IN FeHor_Ped TIMESTAMP,
+IN Estado INT(10),
+IN ID_Guia INT(10)
+)
+BEGIN
+INSERT INTO Pedidos (ID_Pedido,ID_Usuario,FeHor_Ped,Estado,ID_Guia)
+VALUES (ID_Pedido,ID_Usuario,FeHor_Ped,Estado,ID_Guia);
+END$$
+
+DELIMITER ;
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Compra`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Compra` (
+ID_Compra INT(10),
+ID_TiPago INT(10),
+total DECIMAL(10,2),
+Ref_Pago VARCHAR(30),
+Fec_com DATE,
+ID_Pedido INT(10)
+)
+BEGIN
+INSERT INTO Compra(ID_Compra,ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido)
+VALUES (ID_Compra,ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido);
+END$$
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Producto`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Producto` (
+ID_Producto INT(10),
+ID_Medida INT(10),
+NomProd VARCHAR(50),
+Valor DECIMAL(10,2),
+Cant NUMERIC(19,0),
+ID_Tienda INT(10),
+Imagen VARCHAR(50),
+Descrip VARCHAR(50)
+)
+BEGIN
+INSERT INTO Producto(ID_Producto,ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip)
+VALUES (ID_Producto,ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip);
+END$$
+
+DELIMITER ;
+
+DELIMITER ;
+
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Reembolsos`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Reembolsos` (
+ID_Reembolso INT(10),
+Fec_Soli DATE,
+Valor NUMERIC(20,2),
+Motivo VARCHAR(50),
+Fec_Resp DATE,
+Estado VARCHAR(20),
+ID_Com_Produc INT(10)
+)
+BEGIN
+INSERT INTO Reembolsos(ID_Reembolso,Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
+VALUES (ID_Reembolso,Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
+END$$
+
+DELIMITER ;
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Guia_de_Envio`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Guia_de_Envio` (
+ID_Guia INT (10),
+ID_Transpor INT (10),
+Fec_Env DATE,
+Obser VARCHAR(50)
+)
+BEGIN
+INSERT INTO Guia_de_Envio(ID_Guia,ID_Transpor,Fec_Env,Obser)
+VALUES (ID_Guia,ID_Transpor,Fec_Env,Obser);
+END$$
+
+DELIMITER ;
+
+
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `R_Social`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `R_Social` (
+ID_Guia INT (10),
+ID_Transpor INT (10),
+Fec_Env DATE,
+Obser VARCHAR(50)
+)
+BEGIN
+INSERT INTO R_Social(ID_Guia,ID_Transpor,Fec_Env,Obser)
+VALUES (ID_Guia,ID_Transpor,Fec_Env,Obser);
+END$$
+
+DELIMITER ;
 
