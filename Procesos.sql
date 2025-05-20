@@ -16,7 +16,8 @@ END$$
 
 DELIMITER ;
 ;
-/*Proceso de Transportaadora*/
+
+/*Proceso de Transportadora*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Transportadora`;
 
@@ -36,7 +37,9 @@ BEGIN
 END$$
 
 DELIMITER ;
+;
 
+/*Proceso de Usuarios :3*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `usuario`;
 
@@ -60,8 +63,9 @@ VALUES (ID_Usuario,NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Passwo
 END$$
 
 DELIMITER ;
+;
 
-
+/*Proceso de Pedidos*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Pedidos`;
 
@@ -80,6 +84,9 @@ VALUES (ID_Pedido,ID_Usuario,FeHor_Ped,Estado,ID_Guia);
 END$$
 
 DELIMITER ;
+;
+
+/*Proceso de Compra*/
 
 USE `comuctiva`;
 DROP procedure IF EXISTS `Compra`;
@@ -100,7 +107,9 @@ VALUES (ID_Compra,ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido);
 END$$
 
 DELIMITER ;
+;
 
+/*Proceso de Producto*/
 
 USE `comuctiva`;
 DROP procedure IF EXISTS `Producto`;
@@ -123,8 +132,9 @@ VALUES (ID_Producto,ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip);
 END$$
 
 DELIMITER ;
+;
 
-
+/*Proceso de Reembolsos*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Reembolsos`;
 
@@ -145,7 +155,9 @@ VALUES (ID_Reembolso,Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
 END$$
 
 DELIMITER ;
+;
 
+/*Proceso de Guia de envio*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Guia_de_Envio`;
 
@@ -163,6 +175,9 @@ VALUES (ID_Guia,ID_Transpor,Fec_Env,Obser);
 END$$
 
 DELIMITER ;
+;
+
+/*Proceso de Direcciones*/
 
 USE `comuctiva`;
 DROP procedure IF EXISTS `Direcciones`;
@@ -185,6 +200,8 @@ END$$
 
 DELIMITER ;
 
+
+/*Proceso de Barrio*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Barrio`;
 
@@ -202,6 +219,7 @@ END$$
 
 DELIMITER ;
 
+/*Proceso de Tienda*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Tienda`;
 
@@ -222,6 +240,8 @@ END$$
 
 DELIMITER ;
 
+
+/*Proceso de R_Social*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `R_Social`;
 
@@ -241,6 +261,8 @@ END$$
 
 DELIMITER ;
 
+
+/*Proceso de Ingres_Produc*/
 USE `comuctiva`;
 DROP procedure IF EXISTS ` Ingres_Produc`;
 
@@ -258,10 +280,10 @@ END$$
 
 DELIMITER ;
 
-
+/*Proceso de Pedi_Produc*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Pedi_Produc`;
-
+								
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Pedi_Produc` (
