@@ -196,3 +196,98 @@ END$$
 
 DELIMITER ;
 ;
+
+USE comuctiva;
+DROP procedure IF EXISTS Direcciones;
+
+DELIMITER $$
+USE comuctiva$$
+CREATE PROCEDURE Direcciones (
+IN ID_Direcc INT(10),
+IN ID_Vias INT(10),
+IN num VARCHAR(10), 
+IN comple VARCHAR(50),
+IN Ubi_Geo VARCHAR (20),
+IN ID_Usuario INT(10),
+IN ID_Barrio INT(10)
+)
+BEGIN
+INSERT INTO Direcciones(ID_Direcc,ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio)
+VALUES (ID_Direcc,ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio);
+END$$
+
+DELIMITER ;
+
+USE comuctiva;
+DROP procedure IF EXISTS Barrio;
+
+DELIMITER $$
+USE comuctiva$$
+CREATE PROCEDURE Barrio (
+IN ID_Barrio INT(10),
+IN Nom VARCHAR(50),
+IN ID_Muni INT(10)
+)
+BEGIN
+INSERT INTO Barrio(ID_Barrio,Nom,ID_Muni)
+VALUES (ID_Barrio,Nom,ID_Muni);
+END$$
+
+DELIMITER ;
+
+USE comuctiva;
+DROP procedure IF EXISTS Tienda;
+
+DELIMITER $$
+USE comuctiva$$
+CREATE PROCEDURE Tienda (
+IN ID_Tienda INT(10),
+IN ID_Direcc INT(10),
+IN NomT VARCHAR(50),
+IN Logo VARCHAR(50),
+IN ID_Usuario INT(10),
+IN ID_R_Social INT(10)
+)
+BEGIN
+INSERT INTO Tienda(ID_Tienda,ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social)
+VALUES (ID_Tienda,ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social);
+END$$
+
+DELIMITER ;
+
+USE comuctiva;
+DROP procedure IF EXISTS ` Ingres_Produc`;
+
+DELIMITER $$
+USE comuctiva$$
+CREATE PROCEDURE ` Ingres_Produc` (
+ID_Producto INT(10),
+ID_Ingreso INT(10),
+cant NUMERIC (20,2)
+)
+BEGIN
+INSERT INTO Ingres_Produc (ID_Producto,ID_Ingreso,cant)
+VALUES (ID_Producto,ID_Ingreso,cant);
+END$$
+
+DELIMITER ;
+
+
+USE comuctiva;
+DROP procedure IF EXISTS Pedi_Produc;
+								
+DELIMITER $$
+USE comuctiva$$
+CREATE PROCEDURE Pedi_Produc (
+IN ID_Producto INT(10),
+IN ID_Medida INT(10),
+IN NomProd VARCHAR(50),
+IN valor DECIMAL(30,0),
+IN cant NUMERIC(10,2)
+)
+BEGIN
+INSERT INTO Pedi_Produc(ID_Producto,ID_Medida,NomProd,valor,cant)
+VALUES (ID_Producto,ID_Medida,NomProd,valor,cant);
+END$$
+
+DELIMITER ;
