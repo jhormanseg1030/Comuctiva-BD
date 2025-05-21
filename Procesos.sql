@@ -1,3 +1,4 @@
+/*Proceso de Descuentos*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `comuctiva`.`Descuentos`;
 ;
@@ -39,14 +40,13 @@ END$$
 DELIMITER ;
 ;
 
-/*Proceso de Usuarios :3*/
+/*Proceso de Usuarios*/
 USE `comuctiva`;
-DROP procedure IF EXISTS `usuario`;
+DROP procedure IF EXISTS `Usuario`;
 
 DELIMITER $$
 USE `comuctiva`$$
-CREATE PROCEDURE `usuario` (
-IN ID_Usuario INT(10),
+CREATE PROCEDURE `Usuario` (
 IN NomUsu VARCHAR(50),
 IN apell1 VARCHAR (50),
 IN apell2 VARCHAR(50),
@@ -58,8 +58,8 @@ IN NumDoc VARCHAR(20),
 IN Password VARCHAR(10)
 )
 BEGIN
-Insert into usuario(ID_Usuario,NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password)
-VALUES (ID_Usuario,NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password);
+Insert into Usuario(NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password)
+VALUES (NomUsu,apell1,apell2,tel1,tel2,ID_TipDoc,correo,NumDoc,Password);
 END$$
 
 DELIMITER ;
@@ -72,15 +72,14 @@ DROP procedure IF EXISTS `Pedidos`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Pedidos` (
-IN ID_Pedido INT(10),
 IN ID_Usuario INT(10),
 IN FeHor_Ped TIMESTAMP,
 IN Estado INT(10),
 IN ID_Guia INT(10)
 )
 BEGIN
-INSERT INTO Pedidos (ID_Pedido,ID_Usuario,FeHor_Ped,Estado,ID_Guia)
-VALUES (ID_Pedido,ID_Usuario,FeHor_Ped,Estado,ID_Guia);
+INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,Estado,ID_Guia)
+VALUES (ID_Usuario,FeHor_Ped,Estado,ID_Guia);
 END$$
 
 DELIMITER ;
@@ -94,7 +93,6 @@ DROP procedure IF EXISTS `Compra`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Compra` (
-ID_Compra INT(10),
 ID_TiPago INT(10),
 total DECIMAL(10,2),
 Ref_Pago VARCHAR(30),
@@ -102,8 +100,8 @@ Fec_com DATE,
 ID_Pedido INT(10)
 )
 BEGIN
-INSERT INTO Compra(ID_Compra,ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido)
-VALUES (ID_Compra,ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido);
+INSERT INTO Compra(ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido)
+VALUES (ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido);
 END$$
 
 DELIMITER ;
@@ -117,7 +115,6 @@ DROP procedure IF EXISTS `Producto`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Producto` (
-ID_Producto INT(10),
 ID_Medida INT(10),
 NomProd VARCHAR(50),
 Valor DECIMAL(10,2),
@@ -127,8 +124,8 @@ Imagen VARCHAR(50),
 Descrip VARCHAR(50)
 )
 BEGIN
-INSERT INTO Producto(ID_Producto,ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip)
-VALUES (ID_Producto,ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip);
+INSERT INTO Producto(ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip)
+VALUES (ID_Medida,NomProd,Valor,Cant,ID_Tienda,Imagen,Descrip);
 END$$
 
 DELIMITER ;
@@ -141,7 +138,6 @@ DROP procedure IF EXISTS `Reembolsos`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Reembolsos` (
-ID_Reembolso INT(10),
 Fec_Soli DATE,
 Valor NUMERIC(20,2),
 Motivo VARCHAR(50),
@@ -150,8 +146,8 @@ Estado VARCHAR(20),
 ID_Com_Produc INT(10)
 )
 BEGIN
-INSERT INTO Reembolsos(ID_Reembolso,Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
-VALUES (ID_Reembolso,Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
+INSERT INTO Reembolsos(Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
+VALUES (Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
 END$$
 
 DELIMITER ;
@@ -164,14 +160,13 @@ DROP procedure IF EXISTS `Guia_de_Envio`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Guia_de_Envio` (
-ID_Guia INT (10),
 ID_Transpor INT (10),
 Fec_Env DATE,
 Obser VARCHAR(50)
 )
 BEGIN
-INSERT INTO Guia_de_Envio(ID_Guia,ID_Transpor,Fec_Env,Obser)
-VALUES (ID_Guia,ID_Transpor,Fec_Env,Obser);
+INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,Obser)
+VALUES (ID_Transpor,Fec_Env,Obser);
 END$$
 
 DELIMITER ;
@@ -184,26 +179,25 @@ DROP procedure IF EXISTS `R_Social`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `R_Social` (
-ID_Guia INT (10),
 ID_Transpor INT (10),
 Fec_Env DATE,
 Obser VARCHAR(50)
 )
 BEGIN
-INSERT INTO R_Social(ID_Guia,ID_Transpor,Fec_Env,Obser)
-VALUES (ID_Guia,ID_Transpor,Fec_Env,Obser);
+INSERT INTO R_Social(ID_Transpor,Fec_Env,Obser)
+VALUES (ID_Transpor,Fec_Env,Obser);
 END$$
 
 DELIMITER ;
 ;
 
+/*Proceso de Direcciones*/
 USE comuctiva;
 DROP procedure IF EXISTS Direcciones;
 
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Direcciones (
-IN ID_Direcc INT(10),
 IN ID_Vias INT(10),
 IN num VARCHAR(10), 
 IN comple VARCHAR(50),
@@ -212,11 +206,13 @@ IN ID_Usuario INT(10),
 IN ID_Barrio INT(10)
 )
 BEGIN
-INSERT INTO Direcciones(ID_Direcc,ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio)
-VALUES (ID_Direcc,ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio);
+INSERT INTO Direcciones(ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio)
+VALUES (ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio);
 END$$
 
 DELIMITER ;
+
+/*Proceso de Barrio*/
 
 USE comuctiva;
 DROP procedure IF EXISTS Barrio;
@@ -224,16 +220,17 @@ DROP procedure IF EXISTS Barrio;
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Barrio (
-IN ID_Barrio INT(10),
 IN Nom VARCHAR(50),
 IN ID_Muni INT(10)
 )
 BEGIN
-INSERT INTO Barrio(ID_Barrio,Nom,ID_Muni)
-VALUES (ID_Barrio,Nom,ID_Muni);
+INSERT INTO Barrio(Nom,ID_Muni)
+VALUES (Nom,ID_Muni);
 END$$
 
 DELIMITER ;
+
+/*Proceso de Tienda*/
 
 USE comuctiva;
 DROP procedure IF EXISTS Tienda;
@@ -241,7 +238,6 @@ DROP procedure IF EXISTS Tienda;
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Tienda (
-IN ID_Tienda INT(10),
 IN ID_Direcc INT(10),
 IN NomT VARCHAR(50),
 IN Logo VARCHAR(50),
@@ -249,18 +245,19 @@ IN ID_Usuario INT(10),
 IN ID_R_Social INT(10)
 )
 BEGIN
-INSERT INTO Tienda(ID_Tienda,ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social)
-VALUES (ID_Tienda,ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social);
+INSERT INTO Tienda(ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social)
+VALUES (ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social);
 END$$
 
 DELIMITER ;
 
+/*Proceso de Ingres_Produc*/
 USE comuctiva;
 DROP procedure IF EXISTS ` Ingres_Produc`;
 
 DELIMITER $$
 USE comuctiva$$
-CREATE PROCEDURE ` Ingres_Produc` (
+CREATE PROCEDURE ` Ingres_Produc`(
 ID_Producto INT(10),
 ID_Ingreso INT(10),
 cant NUMERIC (20,2)
@@ -272,7 +269,7 @@ END$$
 
 DELIMITER ;
 
-
+/*Proceso de Pedi_Produc*/
 USE comuctiva;
 DROP procedure IF EXISTS Pedi_Produc;
 								
@@ -280,14 +277,13 @@ DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Pedi_Produc (
 IN ID_Producto INT(10),
-IN ID_Medida INT(10),
-IN NomProd VARCHAR(50),
-IN valor DECIMAL(30,0),
-IN cant NUMERIC(10,2)
+IN ID_Pedido INT(10),
+IN cant NUMERIC(30,0),
+IN valor DECIMAL(10,3)
 )
 BEGIN
-INSERT INTO Pedi_Produc(ID_Producto,ID_Medida,NomProd,valor,cant)
-VALUES (ID_Producto,ID_Medida,NomProd,valor,cant);
+INSERT INTO Pedi_Produc(ID_Producto,ID_Pedido,cant,valor)
+VALUES (ID_Producto,ID_Pedido,cant,valor);
 END$$
 
 DELIMITER ;
