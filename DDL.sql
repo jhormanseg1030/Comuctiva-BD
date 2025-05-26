@@ -16,9 +16,9 @@ CREATE TABLE Vias(
 Id_Vias INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tipo VARCHAR (20) NOT NULL
 );
-CREATE TABLE Muni(
-Id_Muni INT (10) PRIMARY KEY AUTO_INCREMENT,
-    Nom VARCHAR (50) NOT NULL
+CREATE TABLE Dep(
+	ID_Dep INT (10) PRIMARY KEY,
+    Nom VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE Transportadora(
@@ -46,6 +46,12 @@ Id_TiPago INT (10) PRIMARY KEY AUTO_INCREMENT,
 );
 
 /*Tablas debiles*/
+
+CREATE TABLE Muni(
+	ID_Muni INT (10) PRIMARY KEY,
+    Nom VARCHAR (50) NOT NULL,
+	ID_Dep INT (10)
+);
 
 CREATE TABLE Usuario(
 ID_Usuario INT(10) PRIMARY KEY auto_increment,
@@ -165,7 +171,9 @@ CREATE TABLE Ingresos(
     Obser VARCHAR (50)
 );
 
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 /*Foreign Keys*/
+
 /*Usuario*/
 ALTER TABLE Usuario
 ADD CONSTRAINT FK_Tip_Doc
@@ -312,3 +320,9 @@ FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto);
 ALTER TABLE Pedi_Produc
 ADD CONSTRAINT FK_Pedi
 FOREIGN KEY (ID_Pedido) REFERENCES Pedidos(ID_Pedido);
+
+/*Municipos*/
+ 
+ ALTER TABLE Muni
+ADD CONSTRAINT FK_Dep
+FOREIGN KEY (ID_Dep) REFERENCES Dep(ID_Dep);
