@@ -220,6 +220,7 @@ DROP procedure IF EXISTS Barrio;
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Barrio (
+IN Barr_Vere VARCHAR(20),
 IN Nom VARCHAR(50),
 IN ID_Muni INT(10)
 )

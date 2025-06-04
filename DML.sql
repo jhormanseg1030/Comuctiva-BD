@@ -3,6 +3,7 @@ INSERT INTO Tip_Doc (Tipo) VALUES ("Cedula de Cuidadania"),("Pasaporte"),("Tarje
 INSERT INTO Vias (Tipo) VALUES ("Calle"),("Carrera"),("Avenida"),("Transversal");
 INSERT INTO Unidad_Medida (Tip_Medida) VALUES ("Libra"),("Kilo"),("Bulto"),("Unidad"),("Litro"),("Gramo");
 INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debito"),("PSE"),("Efectivo"),("PayPal"),("Nequi"),("Daviplata");
+INSERT INTO Barrio (Barr_Vere) VALUES ("Barrio"),("Vereda"),("Sector");
 
 /*Departamentos :D*/
 
@@ -45,7 +46,7 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25293,"GACHALA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25297,"GACHETA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25299,"GAMA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25322,"GUASCA",25);
-INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25326,"GUATAVITA",25);
+INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25823,"GUATAVITA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25372,"JUNÍN",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25377,"LA CALERA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25839,"UBALÁ",25);
