@@ -136,6 +136,7 @@ ID_Barrio INT(10)
 );
 CREATE TABLE Barrio(
 ID_Barrio INT(10)PRIMARY KEY auto_increment,
+Barr_Vere VARCHAR(20),
 Nom VARCHAR(50)NOT NULL,
 ID_Muni INT(10)
 );
