@@ -4,6 +4,11 @@ INSERT INTO Vias (Tipo) VALUES ("Calle"),("Carrera"),("Avenida"),("Transversal")
 INSERT INTO Unidad_Medida (Tip_Medida) VALUES ("Libra"),("Kilo"),("Bulto"),("Unidad"),("Litro"),("Gramo");
 INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debito"),("PSE"),("Efectivo"),("PayPal"),("Nequi"),("Daviplata");
 
+/*Departamentos :D*/
+
+INSERT INTO Dep (ID_Dep,Nom) VALUES (11,"Bogotá, D.C.");
+INSERT INTO Dep (ID_Dep,Nom) VALUES (25,"Cundinamarca");
+
 /*Muni :D*/
 
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25183,"CHOCONTÁ",25);
@@ -124,12 +129,6 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25793,"TAUSA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25843,"UBATE",25);
 
 
-/*Departamentos :D*/
-
-INSERT INTO Dep (ID_Dep,Nom) VALUES (11,"Bogotá, D.C.");
-INSERT INTO Dep (ID_Dep,Nom) VALUES (25,"Cundinamarca");
-
-SELECT * FROM Muni;
 
 
 
