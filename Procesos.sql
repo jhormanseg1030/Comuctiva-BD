@@ -2,7 +2,7 @@
 USE `comuctiva`;
 DROP procedure IF EXISTS `comuctiva`.`Descuentos`;
 ;
-
+																										
 DELIMITER $$
 USE `comuctiva`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Descuentos`(
@@ -74,10 +74,14 @@ USE `comuctiva`$$
 CREATE PROCEDURE `Pedidos` (
 IN ID_Usuario INT(10),
 IN FeHor_Ped TIMESTAMP,
-IN Estado INT(10),
+IN Estado VARCHAR(20),
 IN ID_Guia INT(10)
 )
 BEGIN
+	DECLARE FeHor TIMESTAMP;
+    
+    SET FeHor = DATEDIFF(FeHor_Ped,NOW());
+
 INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,Estado,ID_Guia)
 VALUES (ID_Usuario,FeHor_Ped,Estado,ID_Guia);
 END$$
@@ -178,15 +182,14 @@ DROP procedure IF EXISTS `R_Social`;
 
 DELIMITER $$
 USE `comuctiva`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `R_Social`(
-	IN Nombre VARCHAR (50),
-    IN NIT INT,
-	IN Sucur VARCHAR (50),
-    IN ID_Usuario INT
+CREATE PROCEDURE `R_Social` (
+ID_Transpor INT (10),
+Fec_Env DATE,
+Obser VARCHAR(50)
 )
 BEGIN
-INSERT INTO R_Social(Nombre,NIT,Sucur,ID_Usuario)
-VALUES (Nombre,NIT,Sucur,ID_Usuario);
+INSERT INTO R_Social(ID_Transpor,Fec_Env,Obser)
+VALUES (ID_Transpor,Fec_Env,Obser);
 END$$
 
 DELIMITER ;
