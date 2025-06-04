@@ -178,14 +178,15 @@ DROP procedure IF EXISTS `R_Social`;
 
 DELIMITER $$
 USE `comuctiva`$$
-CREATE PROCEDURE `R_Social` (
-ID_Transpor INT (10),
-Fec_Env DATE,
-Obser VARCHAR(50)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `R_Social`(
+	IN Nombre VARCHAR (50),
+    IN NIT INT,
+	IN Sucur VARCHAR (50),
+    IN ID_Usuario INT
 )
 BEGIN
-INSERT INTO R_Social(ID_Transpor,Fec_Env,Obser)
-VALUES (ID_Transpor,Fec_Env,Obser);
+INSERT INTO R_Social(Nombre,NIT,Sucur,ID_Usuario)
+VALUES (Nombre,NIT,Sucur,ID_Usuario);
 END$$
 
 DELIMITER ;
