@@ -69,7 +69,7 @@ CREATE TABLE Pedidos(
 ID_Pedido INT(10) PRIMARY KEY auto_increment,
 ID_Usuario INT(10),
 FeHor_Ped TIMESTAMP NOT NULL,
-Estado INT(10)NOT NULL,
+Estado VARCHAR(20)NOT NULL,
 ID_Guia INT(10)
 );
 CREATE TABLE Compra(

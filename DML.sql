@@ -3,7 +3,11 @@ INSERT INTO Tip_Doc (Tipo) VALUES ("Cedula de Cuidadania"),("Pasaporte"),("Tarje
 INSERT INTO Vias (Tipo) VALUES ("Calle"),("Carrera"),("Avenida"),("Transversal");
 INSERT INTO Unidad_Medida (Tip_Medida) VALUES ("Libra"),("Kilo"),("Bulto"),("Unidad"),("Litro"),("Gramo");
 INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debito"),("PSE"),("Efectivo"),("PayPal"),("Nequi"),("Daviplata");
+<<<<<<< HEAD
 INSERT INTO Barrio (Barr_Vere) VALUES ("Barrio"),("Vereda"),("Sector");
+=======
+INSERT INTO Pedidos (Estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
+>>>>>>> c8e744900f8f9a01a7b98573019f1a1639a09cc3
 
 /*Departamentos :D*/
 
