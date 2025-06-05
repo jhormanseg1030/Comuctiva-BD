@@ -8,7 +8,7 @@ INSERT INTO Barrio (Barr_Vere) VALUES ("Barrio"),("Vereda"),("Sector");
 
 INSERT INTO Pedidos (Estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
 
-
+INSERT INTO Guia_de_Envio (Obser) VALUES ("delicado"), ("peligro"), ("fragil"), ("ligero"), ("pesado"), ("delicado");
 /*Departamentos :D*/
 
 INSERT INTO Dep (ID_Dep,Nom) VALUES (11,"Bogotá, D.C.");
@@ -50,7 +50,7 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25293,"GACHALA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25297,"GACHETA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25299,"GAMA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25322,"GUASCA",25);
-INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25823,"GUATAVITA",25);
+INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25326,"GUATAVITA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25372,"JUNÍN",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25377,"LA CALERA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25839,"UBALÁ",25);

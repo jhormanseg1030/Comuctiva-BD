@@ -5,6 +5,19 @@ CALL Usuario ("Brandon","Ramirez","Patiño","3108117232","3158990043",1,"Brandon
 CALL Usuario ("Maria","Talero","Castelblanco","3136451239","3107348097",2,"Mariatalero@gmail.com","10114567823","67436798");
 select *from Usuario;
 
+/*Pedidos*/
+
+CALL Pedidos (2,2,2);
+ALTER TABLE pedidos DROP CONSTRAINT FK_Usuario;
+ALTER TABLE pedidos DROP CONSTRAINT FK_Guia_de_Envio;
+ALTER TABLE Pedi_Produc DROP CONSTRAINT FK_Pedi;
+truncate Pedidos;
+select *from Pedidos;
+
+-- Descuentos
+CALL Descuentos ("¡Obtén un 20% de descuento en tu primera compra!","150000");
+
+
 -- CALL BARRIO
 CALL Barrio (1,3,"bohio",25817);
 CALL Barrio (2,1,"Flandes",25335);
@@ -22,12 +35,13 @@ CALL Transportadora('servientrega', 'fedex', '121212121', 'contacto@servientrega
 CALL Transportadora('servientrega', 'fedex', '018005005', 'contacto@servientrega.com', 'Calle 215', 'www.servientrega.com');
 
 /*Guia de envio*/
-CALL Guia_de_Envio(1,'2025-05-20','delicado');
-CALL Guia_de_Envio(1,'2025-06-13','peligro');
-CALL Guia_de_Envio(1,'2025-06-15','fragil');
-CALL Guia_de_Envio(1,'2025-07-14','ligero');
-CALL Guia_de_Envio(1,'2025-08-10','pesado');
-CALL Guia_de_Envio(1,'2025-09-02','delicado');
+CALL Guia_de_Envio(1,1);
+CALL Guia_de_Envio(2,'2025-06-13',2);
+CALL Guia_de_Envio(1,'2025-06-15',3);
+CALL Guia_de_Envio(1,'2025-07-14',4);
+CALL Guia_de_Envio(1,'2025-08-10',5);
+CALL Guia_de_Envio(1,'2025-09-02',6);
+SELECT * FROM Guia_de_Envio;
 
 
 /*R_Social*/
@@ -44,6 +58,7 @@ CALL Tienda(1,'tiendas don luis','fedex','1','1');
 CALL Tienda(1,'tiendas don luis','fedex','1','1');
 CALL Tienda(1,'tiendas don luis','fedex','1','1');
 CALL Tienda(1,'tiendas don luis','fedex','1','1');
+
 
 
 

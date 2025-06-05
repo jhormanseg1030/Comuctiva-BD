@@ -7,12 +7,15 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Descuentos`(
 	IN Descr VARCHAR (50),
-	IN F_Des DATE,
-    IN Val DECIMAL (10,2) 
+    IN Val DECIMAL (10,2),
+    IN descu INT
+
 )
 BEGIN
-	INSERT INTO Descuentos(Descripcion,Fec_Des,Valor)
-    VALUES (Descr,F_Des,Val);
+	DECLARE valor1 Int;
+	Set valor1 = fun_desc(descu);/* actualiza el valor de la compra verificando y cambiando*/
+	INSERT INTO Descuentos(Descripcion,Fec_Des,Val)
+    VALUES (Descr,NOW(),Val);
 END$$
 
 DELIMITER ;
@@ -73,17 +76,13 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Pedidos` (
 IN ID_Usuario INT(10),
-IN FeHor_Ped TIMESTAMP,
 IN Estado VARCHAR(20),
 IN ID_Guia INT(10)
 )
 BEGIN
-	DECLARE FeHor TIMESTAMP;
-    
-    SET FeHor = DATEDIFF(FeHor_Ped,NOW());
 
 INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,Estado,ID_Guia)
-VALUES (ID_Usuario,FeHor_Ped,Estado,ID_Guia);
+VALUES (ID_Usuario,now(),Estado,ID_Guia);
 END$$
 
 DELIMITER ;
@@ -100,12 +99,11 @@ CREATE PROCEDURE `Compra` (
 ID_TiPago INT(10),
 total DECIMAL(10,2),
 Ref_Pago VARCHAR(30),
-Fec_com DATE,
 ID_Pedido INT(10)
 )
 BEGIN
 INSERT INTO Compra(ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido)
-VALUES (ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido);
+VALUES (ID_TiPago,total,Ref_Pago,NOW(),ID_Pedido);
 END$$
 
 DELIMITER ;
@@ -142,16 +140,14 @@ DROP procedure IF EXISTS `Reembolsos`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Reembolsos` (
-Fec_Soli DATE,
 Valor NUMERIC(20,2),
 Motivo VARCHAR(50),
-Fec_Resp DATE,
 Estado VARCHAR(20),
 ID_Com_Produc INT(10)
 )
 BEGIN
 INSERT INTO Reembolsos(Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
-VALUES (Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
+VALUES (NOW(),Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
 END$$
 
 DELIMITER ;
@@ -165,12 +161,13 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Guia_de_Envio` (
 ID_Transpor INT (10),
-Fec_Env DATE,
 Obser VARCHAR(50)
 )
 BEGIN
+
 INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,Obser)
-VALUES (ID_Transpor,Fec_Env,Obser);
+VALUES (ID_Transpor,NOW(),Obser);
+
 END$$
 
 DELIMITER ;
@@ -236,12 +233,11 @@ USE comuctiva$$
 CREATE PROCEDURE Barrio (
 IN Barr_Vere VARCHAR(20),
 IN Nom VARCHAR(50),
-IN ID_Muni INT(10),
-IN ID_Barrio INT(10)
+IN ID_Muni INT(10)
 )
 BEGIN
-INSERT INTO Barrio(Nom,ID_Muni,ID_Barrio)
-VALUES (Nom,ID_Muni,ID_Barrio);
+INSERT INTO Barrio(Barr_Vere,Nom,ID_Muni)
+VALUES (Barr_Vere,Nom,ID_Muni);
 END$$
 
 DELIMITER ;
