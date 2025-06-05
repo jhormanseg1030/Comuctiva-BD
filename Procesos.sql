@@ -178,22 +178,32 @@ DELIMITER ;
 
 /*Proceso de R_Social*/
 USE `comuctiva`;
-DROP procedure IF EXISTS `R_Social`;
+DROP procedure IF EXISTS `comuctiva`.`R_Social`;
 
 DELIMITER $$
 USE `comuctiva`$$
-CREATE PROCEDURE `R_Social` (
-ID_Transpor INT (10),
-Fec_Env DATE,
-Obser VARCHAR(50)
+CREATE PROCEDURE R_Social(
+    IN param_ID_R_Social INT(10),  
+    IN param_Nombre VARCHAR(50),
+    IN param_NIT VARCHAR(20),
+    IN param_Sucur VARCHAR(50),
+    IN param_ID_Usuario INT(10)
 )
 BEGIN
-INSERT INTO R_Social(ID_Transpor,Fec_Env,Obser)
-VALUES (ID_Transpor,Fec_Env,Obser);
+   
+    UPDATE R_Social 
+    SET Nombre = param_Nombre,
+        NIT = param_NIT,
+        Sucur = param_Sucur,
+        ID_Usuario = param_ID_Usuario
+    WHERE ID_R_Social = param_ID_R_Social;
+    
+  
+    IF ROW_COUNT() = 0 THEN
+        INSERT INTO R_Social(ID_R_Social, Nombre, NIT, Sucur, ID_Usuario)
+        VALUES (param_ID_R_Social, param_Nombre, param_NIT, param_Sucur, param_ID_Usuario);
+    END IF;
 END$$
-
-DELIMITER ;
-;
 
 /*Proceso de Direcciones*/
 USE comuctiva;
@@ -226,11 +236,12 @@ USE comuctiva$$
 CREATE PROCEDURE Barrio (
 IN Barr_Vere VARCHAR(20),
 IN Nom VARCHAR(50),
-IN ID_Muni INT(10)
+IN ID_Muni INT(10),
+IN ID_Barrio INT(10)
 )
 BEGIN
-INSERT INTO Barrio(Nom,ID_Muni)
-VALUES (Nom,ID_Muni);
+INSERT INTO Barrio(Nom,ID_Muni,ID_Barrio)
+VALUES (Nom,ID_Muni,ID_Barrio);
 END$$
 
 DELIMITER ;

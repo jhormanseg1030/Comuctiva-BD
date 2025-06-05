@@ -120,11 +120,10 @@ Obser VARCHAR(50) NOT NULL
 CREATE TABLE R_Social (
 	ID_R_Social INT (10) PRIMARY KEY auto_increment,
 	Nombre VARCHAR (50) NOT NULL,
-    NIT INT (10)NOT NULL,
-    Sucur INT (10)NOT NULL,
+    NIT  VARCHAR(50)NOT NULL,
+    Sucur VARCHAR(50) NOT NULL,
     ID_Usuario INT (10)
 );
-
 CREATE TABLE Direcciones (
 ID_Direcc INT(10)PRIMARY KEY auto_increment,
 ID_Vias INT(10),
