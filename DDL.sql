@@ -44,6 +44,11 @@ CREATE TABLE Tipo_De_Pago(
 Id_TiPago INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tipos VARCHAR (20) NOT NULL
 );
+CREATE TABLE Barr_Vere(
+ID_Barr_Vere INT(10) PRIMARY KEY AUTO_INCREMENT,
+Nombre VARCHAR(20) NOT NULL
+);
+
 
 /*Tablas debiles*/
 
@@ -135,7 +140,7 @@ ID_Barrio INT(10)
 );
 CREATE TABLE Barrio(
 ID_Barrio INT(10)PRIMARY KEY auto_increment,
-Barr_Vere VARCHAR(20),
+ID_Barr_Vere INT(10),
 Nom VARCHAR(50)NOT NULL,
 ID_Muni INT(10)
 );
@@ -272,6 +277,10 @@ FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario);
 ALTER TABLE Barrio
 ADD CONSTRAINT FK_Muni
 FOREIGN KEY (ID_Muni) REFERENCES Muni(ID_Muni);
+
+ALTER TABLE Barrio
+ADD CONSTRAINT FK_Barr_Vere 
+FOREIGN KEY (ID_Barr_Vere) REFERENCES Barr_Vere(ID_Barr_Vere);
 
 /*Direcciones*/
 
