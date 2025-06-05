@@ -234,14 +234,13 @@ DROP procedure IF EXISTS Barrio;
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Barrio (
-IN Barr_Vere VARCHAR(20),
+IN Barr_Vere INT(10),
 IN Nom VARCHAR(50),
-IN ID_Muni INT(10),
-IN ID_Barrio INT(10)
+IN ID_Muni INT(10)
 )
 BEGIN
-INSERT INTO Barrio(Nom,ID_Muni,ID_Barrio)
-VALUES (Nom,ID_Muni,ID_Barrio);
+INSERT INTO Barrio (ID_Barr_Vere,Nom,ID_Muni)
+VALUES (Barr_Vere,Nom,ID_Muni);
 END$$
 
 DELIMITER ;

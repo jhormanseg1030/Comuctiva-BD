@@ -4,7 +4,7 @@ INSERT INTO Vias (Tipo) VALUES ("Calle"),("Carrera"),("Avenida"),("Transversal")
 INSERT INTO Unidad_Medida (Tip_Medida) VALUES ("Libra"),("Kilo"),("Bulto"),("Unidad"),("Litro"),("Gramo");
 INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debito"),("PSE"),("Efectivo"),("PayPal"),("Nequi"),("Daviplata");
 
-INSERT INTO Barrio (Barr_Vere) VALUES ("Barrio"),("Vereda"),("Sector");
+INSERT INTO Barr_Vere (Nombre) VALUES ("Barrio"),("Vereda"),("Sector");
 
 INSERT INTO Pedidos (Estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
 
@@ -78,7 +78,7 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25394,"LA PALMA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25513,"PACHO",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25518,"PAIME",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25653,"SAN CAYETANO",25);
-INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25823,"TOPAIPI",25);
+INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25883,"TOPAIPI",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25871,"VILLAGOMEZ",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25885,"YACOPÍ",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25126,"CAJICÁ",25);
