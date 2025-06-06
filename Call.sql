@@ -18,22 +18,13 @@ select *from Pedidos;
 CALL Descuentos ("¡Obtén un 20% de descuento en tu primera compra!","150000");
 select *from Descuentos;
 
--- CALL BARRIO
-CALL Barrio (1,3,"bohio",25817);
-CALL Barrio (2,1,"Flandes",25335);
-CALL Barrio (3,1,"Altos del Pedregal",25851);
-CALL Barrio (4,2,"Chaleche",25736); 
- select *from barrio;
-
 -- CALL Barrio
 CALL Barrio (3,"bohio",25817);
 CALL Barrio (1,"Flandes",25335);
 CALL Barrio (1,"Altos del Pedregal",25851);
 CALL Barrio (2,"Chaleche",25736); 
 select *from Barrio;
--- TRUNCATE Barrio;
 
--- 
 
 /*transportadora*/
 CALL Transportadora('servientrega', 'fedex', '123456789', 'contacto@servientrega.com', 'Calle 123', 'www.servientrega.com');
@@ -42,6 +33,7 @@ CALL Transportadora('servientrega', 'fedex', '789456213', 'contacto@servientrega
 CALL Transportadora('servientrega', 'fedex', '555444252', 'contacto@servientrega.com', 'Calle 100', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '121212121', 'contacto@servientrega.com', 'Calle 150', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '018005005', 'contacto@servientrega.com', 'Calle 215', 'www.servientrega.com');
+select*from Transportadora;
 
 /*Guia de envio*/
 CALL Guia_de_Envio(1,1);

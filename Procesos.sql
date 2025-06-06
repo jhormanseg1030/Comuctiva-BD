@@ -53,16 +53,16 @@ CREATE PROCEDURE `Usuario` (
 IN NomUsu VARCHAR(50),
 IN apell1 VARCHAR (50),
 IN apell2 VARCHAR(50),
-IN tel1 BINARY(20),
-IN tel2 BINARY(20),
+IN tel1 NUMERIC(20),
+IN tel2 NUMERIC(20),
 IN ID_TipDocu TINYINT(3),
 IN correo VARCHAR(50),
 IN NumDoc VARCHAR(20),
-IN Password VARCHAR(10)
+IN pas VARCHAR(10)
 )
 BEGIN
-Insert into Usuario(NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password)
-VALUES (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password);
+INSERT INTO Usuario (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password)
+VALUES (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,AES_ENCRYPT(pas,'1234'));
 END$$
 
 DELIMITER ;
@@ -81,8 +81,8 @@ IN ID_Guia INT(10)
 )
 BEGIN
 
-INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,Estado,ID_Guia)
-VALUES (ID_Usuario,now(),Estado,ID_Guia);
+INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,ID_Estado,ID_Guia)
+VALUES (ID_Usuario,NOW(),Estado,ID_Guia);
 END$$
 
 DELIMITER ;
@@ -165,7 +165,7 @@ Obser VARCHAR(50)
 )
 BEGIN
 
-INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,Obser)
+INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,ID_Obser)
 VALUES (ID_Transpor,NOW(),Obser);
 
 END$$
@@ -236,7 +236,7 @@ IN Nom VARCHAR(50),
 IN ID_Muni INT(10)
 )
 BEGIN
-INSERT INTO Barrio(Barr_Vere,Nom,ID_Muni)
+INSERT INTO Barrio(ID_Barr_Vere,Nom,ID_Muni)
 VALUES (Barr_Vere,Nom,ID_Muni);
 END$$
 

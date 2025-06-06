@@ -20,7 +20,6 @@ CREATE TABLE Dep(
 	ID_Dep INT (10) PRIMARY KEY,
     Nom VARCHAR (100) NOT NULL
 );
-
 CREATE TABLE Transportadora(
 Id_Transpor INT (10) PRIMARY KEY AUTO_INCREMENT,
     NombreT VARCHAR (30) NOT NULL,
@@ -48,23 +47,28 @@ CREATE TABLE Barr_Vere(
 ID_Barr_Vere INT(10) PRIMARY KEY AUTO_INCREMENT,
 Nombre VARCHAR(20) NOT NULL
 );
-
+CREATE TABLE Estado(
+ID_Estado INT PRIMARY KEY AUTO_INCREMENT,
+estado VARCHAR(30)
+);
+CREATE TABLE Obser(
+ID_Obser INT PRIMARY KEY AUTO_INCREMENT,
+Obser VARCHAR(40)
+);
 
 /*Tablas debiles*/
-
 CREATE TABLE Muni(
 	ID_Muni INT (10) PRIMARY KEY,
     Nom VARCHAR (50) NOT NULL,
 	ID_Dep INT (10)
 );
-
 CREATE TABLE Usuario(
 ID_Usuario INT(10) PRIMARY KEY auto_increment,
 NomUsu VARCHAR(50) NOT NULL,
 apell1 VARCHAR (50) NOT NULL,
 apell2 VARCHAR(50),
-tel1 BINARY(20) NOT NULL,
-tel2 BINARY(20),
+tel1 NUMERIC(20) NOT NULL,
+tel2 NUMERIC(20),
 ID_TipDocu TINYINT(3),
 correo VARCHAR(50) NOT NULL,
 NumDoc VARCHAR(20) NOT NULL,
@@ -74,7 +78,7 @@ CREATE TABLE Pedidos(
 ID_Pedido INT(10) PRIMARY KEY auto_increment,
 ID_Usuario INT(10),
 FeHor_Ped TIMESTAMP NOT NULL,
-Estado VARCHAR(20)NOT NULL,
+ID_Estado INT(10),
 ID_Guia INT(10)
 );
 CREATE TABLE Compra(
@@ -120,14 +124,14 @@ CREATE TABLE Guia_de_Envio (
 ID_Guia INT (10) PRIMARY KEY auto_increment,
 ID_Transpor INT (10),
 Fec_Env DATE NOT NULL,
-Obser VARCHAR(50) NOT NULL
+ID_Obser INT
 );
 CREATE TABLE R_Social (
-	ID_R_Social INT (10) PRIMARY KEY auto_increment,
-	Nombre VARCHAR (50) NOT NULL,
-    NIT  VARCHAR(50)NOT NULL,
-    Sucur VARCHAR(50) NOT NULL,
-    ID_Usuario INT (10)
+ID_R_Social INT (10) PRIMARY KEY auto_increment,
+Nombre VARCHAR (50) NOT NULL,
+NIT  VARCHAR(50)NOT NULL,
+Sucur VARCHAR(50) NOT NULL,
+ID_Usuario INT (10)
 );
 CREATE TABLE Direcciones (
 ID_Direcc INT(10)PRIMARY KEY auto_increment,
@@ -173,7 +177,7 @@ CREATE TABLE Ingresos(
 	ID_Ingreso INT (10) PRIMARY KEY,
     Fecha DATE,
     ID_Usuario INT (10),
-    Obser VARCHAR (50)
+    Obser VARCHAR(50)
 );
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
@@ -194,11 +198,20 @@ ALTER TABLE Pedidos
 ADD CONSTRAINT FK_Guia_de_Envio
 FOREIGN KEY (ID_Guia) REFERENCES Guia_de_Envio(ID_Guia);
 
+ALTER TABLE Pedidos
+ADD CONSTRAINT FK_Estado
+FOREIGN KEY (ID_Estado) REFERENCES Estado(ID_Estado);
+
+
 /*Guia de envio*/
 
 ALTER TABLE Guia_de_Envio
 ADD CONSTRAINT FK_Transportadora
 FOREIGN KEY (ID_Transpor) REFERENCES Transportadora(ID_Transpor);
+
+ALTER TABLE Guia_de_Envio
+ADD CONSTRAINT FK_Obser
+FOREIGN KEY (ID_Obser) REFERENCES Obser(ID_Obser);
 
 /*Rol_Usuario*/
 
