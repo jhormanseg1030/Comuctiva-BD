@@ -7,15 +7,13 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Descuentos`(
 	IN Descr VARCHAR (50),
-    IN Val DECIMAL (10,2),
-    IN descu INT
-
+    IN Valor1 DECIMAL (10,2)
 )
 BEGIN
 	DECLARE valor1 Int;
-	Set valor1 = fun_desc(descu);/* actualiza el valor de la compra verificando y cambiando*/
-	INSERT INTO Descuentos(Descripcion,Fec_Des,Val)
-    VALUES (Descr,NOW(),Val);
+	Set valor1 = fun_desc(descu);
+	INSERT INTO Descuentos(Descripcion,Fec_Des,Valor1)
+    VALUES (Descr,NOW(),Valor1);
 END$$
 
 DELIMITER ;
@@ -122,7 +120,7 @@ NomProd VARCHAR(50),
 Valor DECIMAL(10,2),
 Cant NUMERIC(19,0),
 ID_Tienda INT(10),
-Imagen VARCHAR(50),
+Imagen VARCHAR(100),
 Descrip VARCHAR(50)
 )
 BEGIN
@@ -141,13 +139,13 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Reembolsos` (
 Valor NUMERIC(20,2),
-Motivo VARCHAR(50),
+Motivo VARCHAR(100),
 Estado VARCHAR(20),
 ID_Com_Produc INT(10)
 )
 BEGIN
 INSERT INTO Reembolsos(Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
-VALUES (NOW(),Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
+VALUES (NOW(),Valor,Motivo,NOW(),Estado,ID_Com_Produc);
 END$$
 
 DELIMITER ;
@@ -231,13 +229,17 @@ DROP procedure IF EXISTS Barrio;
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE Barrio (
-IN Barr_Vere INT(10),
+IN ID_Barr_Vere INT(10),
 IN Nom VARCHAR(50),
 IN ID_Muni INT(10)
 )
 BEGIN
 INSERT INTO Barrio(ID_Barr_Vere,Nom,ID_Muni)
+<<<<<<< HEAD
 VALUES (Barr_Vere,Nom,ID_Muni);
+=======
+VALUES (ID_Barr_Vere,Nom,ID_Muni);
+>>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
 END$$
 
 DELIMITER ;
@@ -296,6 +298,26 @@ IN valor DECIMAL(10,3)
 BEGIN
 INSERT INTO Pedi_Produc(ID_Producto,ID_Pedido,cant,valor)
 VALUES (ID_Producto,ID_Pedido,cant,valor);
+END$$
+
+DELIMITER ;
+
+/*Comp_Produc*/
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Comp_Produc`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Comp_Produc` (
+	IN ID_Compra INT,
+    IN ID_Producto INT,
+    IN Cant NUMERIC (19,2),
+    IN Valor DECIMAL (10,2)
+)
+BEGIN
+	INSERT INTO Comp_Produc (ID_Compra,ID_Producto,Cant,Valor)
+    VALUES (ID_Compra,ID_Producto,Cant,Valor);
 END$$
 
 DELIMITER ;
