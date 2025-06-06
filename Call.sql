@@ -5,7 +5,6 @@ CALL Usuario ("Brandon","Ramirez","Patiño","3108117232","3158990043",1,"Brandon
 CALL Usuario ("Maria","Talero","Castelblanco","3136451239","3107348097",2,"Mariatalero@gmail.com","10114567823","67436798");
 select *from Usuario;
 
-<<<<<<< HEAD
 /*Pedidos*/
 
 CALL Pedidos (2,2,2);
@@ -17,7 +16,7 @@ select *from Pedidos;
 
 -- Descuentos
 CALL Descuentos ("¡Obtén un 20% de descuento en tu primera compra!","150000");
-
+select *from Descuentos;
 
 -- CALL BARRIO
 CALL Barrio (1,3,"bohio",25817);
@@ -25,7 +24,7 @@ CALL Barrio (2,1,"Flandes",25335);
 CALL Barrio (3,1,"Altos del Pedregal",25851);
 CALL Barrio (4,2,"Chaleche",25736); 
  select *from barrio;
-=======
+
 -- CALL Barrio
 CALL Barrio (3,"bohio",25817);
 CALL Barrio (1,"Flandes",25335);
@@ -33,7 +32,7 @@ CALL Barrio (1,"Altos del Pedregal",25851);
 CALL Barrio (2,"Chaleche",25736); 
 select *from Barrio;
 -- TRUNCATE Barrio;
->>>>>>> 915211b063ecccac6b6c0ded5906eceba79c27a3
+
 -- 
 
 /*transportadora*/
@@ -69,11 +68,7 @@ select *from Tienda;
 CALL Producto(3,'Papa','2000','3',1,'src="https://www.herbazest.com/imgs/0/a/c/451775/papa.jpg"','papa pastusa fresca y lavada');
 select *from Producto;
 
-<<<<<<< HEAD
-
-=======
 -- Direcciones
 CALL Direcciones (3,'34','b sur','40°4246″N,74°021',2,2);
 CALL Direcciones (1,'36','diagonal 38',' 40°4246″N,74°021',2,2);
 select *from Direcciones;
->>>>>>> 915211b063ecccac6b6c0ded5906eceba79c27a3

@@ -236,11 +236,7 @@ IN Nom VARCHAR(50),
 IN ID_Muni INT(10)
 )
 BEGIN
-<<<<<<< HEAD
 INSERT INTO Barrio(Barr_Vere,Nom,ID_Muni)
-=======
-INSERT INTO Barrio (ID_Barr_Vere,Nom,ID_Muni)
->>>>>>> 915211b063ecccac6b6c0ded5906eceba79c27a3
 VALUES (Barr_Vere,Nom,ID_Muni);
 END$$
 
