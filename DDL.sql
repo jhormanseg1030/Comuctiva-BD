@@ -63,7 +63,7 @@ CREATE TABLE Muni(
 	ID_Dep INT (10)
 );
 CREATE TABLE Usuario(
-<<<<<<< HEAD
+
 ID_Usuario INT(10) PRIMARY KEY auto_increment,
 NomUsu VARCHAR(50) NOT NULL,
 apell1 VARCHAR (50) NOT NULL,
@@ -81,26 +81,9 @@ ID_Usuario INT(10),
 FeHor_Ped TIMESTAMP NOT NULL,
 ID_Estado INT(10),
 ID_Guia INT(10)
-=======
-	ID_Usuario INT(10) PRIMARY KEY auto_increment,
-	NomUsu VARCHAR(50) NOT NULL,
-	apell1 VARCHAR (50) NOT NULL,
-	apell2 VARCHAR(50),
-	tel1 BINARY(20) NOT NULL,
-	tel2 BINARY(20),
-	ID_TipDocu TINYINT(3),
-	correo VARCHAR(50) NOT NULL,
-	NumDoc VARCHAR(20) NOT NULL,
-	Password VARCHAR(10) NOT NULL
+
 );
-CREATE TABLE Pedidos(
-	ID_Pedido INT(10) PRIMARY KEY auto_increment,
-	ID_Usuario INT(10),
-	FeHor_Ped TIMESTAMP NOT NULL,
-	Estado VARCHAR(20)NOT NULL,
-	ID_Guia INT(10)
->>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
-);
+
 CREATE TABLE Compra(
 	ID_Compra INT(10) PRIMARY KEY auto_increment,
 	ID_TiPago INT(10),
@@ -141,17 +124,10 @@ CREATE TABLE Comp_Produc(
 	Valor DECIMAL(10,2) NOT NULL
 );
 CREATE TABLE Guia_de_Envio (
-<<<<<<< HEAD
 ID_Guia INT (10) PRIMARY KEY auto_increment,
 ID_Transpor INT (10),
-Fec_Env DATE NOT NULL,
+Fec_Env TIMESTAMP NOT NULL,
 ID_Obser INT
-=======
-	ID_Guia INT (10) PRIMARY KEY auto_increment,
-	ID_Transpor INT (10),
-	Fec_Env DATETIME NOT NULL,
-	Obser VARCHAR(50) NOT NULL
->>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
 );
 CREATE TABLE R_Social (
 ID_R_Social INT (10) PRIMARY KEY auto_increment,

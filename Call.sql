@@ -5,14 +5,9 @@ CALL Usuario ("Brandon","Ramirez","Patiño","3108117232","3158990043",1,"Brandon
 CALL Usuario ("Maria","Talero","Castelblanco","3136451239","3107348097",2,"Mariatalero@gmail.com","10114567823","67436798");
 select *from Usuario;
 
-<<<<<<< HEAD
 /*Pedidos*/
-
 CALL Pedidos (2,2,2);
-ALTER TABLE pedidos DROP CONSTRAINT FK_Usuario;
-ALTER TABLE pedidos DROP CONSTRAINT FK_Guia_de_Envio;
-ALTER TABLE Pedi_Produc DROP CONSTRAINT FK_Pedi;
-truncate Pedidos;
+CALL Pedidos (2,3,1);
 select *from Pedidos;
 
 -- Descuentos
@@ -27,8 +22,7 @@ CALL Barrio (2,"Chaleche",25736);
 select *from Barrio;
 
 
-=======
->>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
+
 /*transportadora*/
 CALL Transportadora('servientrega', 'fedex', '123456789', 'contacto@servientrega.com', 'Calle 123', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '567891234', 'contacto@servientrega.com', 'Calle 220', 'www.servientrega.com');
@@ -44,16 +38,11 @@ CALL Guia_de_Envio(2,2);
 CALL Guia_de_Envio(1,3);
 CALL Guia_de_Envio(1,4);
 CALL Guia_de_Envio(1,5);
-CALL Guia_de_Envio(1,6);
+CALL Guia_de_Envio(1,2);
 SELECT * FROM Guia_de_Envio;
 TRUNCATE TABLE Guia_de_Envio;
 
 
-/*Pedidos*/
-
-CALL Pedidos (2,2,2);
-CALL Pedidos (2,3,1);
-select *from Pedidos;
 /*ALTER TABLE pedidos DROP CONSTRAINT FK_Usuario;
 ALTER TABLE pedidos DROP CONSTRAINT FK_Guia_de_Envio;
 ALTER TABLE Pedi_Produc DROP CONSTRAINT FK_Pedi;
@@ -77,14 +66,6 @@ SELECT fun_desc(160000); -- Debería devolver 10
 select *from Descuentos;*/
 
 
-
--- CALL Barrio
-CALL Barrio (3,"bohio",25817);
-CALL Barrio (1,"Flandes",25335);
-CALL Barrio (1,"Altos del Pedregal",25851);
-CALL Barrio (2,"Chaleche",25736); 
-select *from Barrio;
-
 -- -- Direcciones
 CALL Direcciones (3,'34','b sur','40°4246″N,74°021',2,2);
 CALL Direcciones (1,'36','diagonal 38',' 40°4246″N,74°021',2,2);
@@ -104,27 +85,20 @@ select *from R_Social;
 CALL Tienda(1,'tiendas don luis','fedex',1,1);
 select *from Tienda;
 
--- ProductoDireccionesDirecciones
+-- Producto
 CALL Producto(3,'Papa','2000','3',1,'src="https://www.herbazest.com/imgs/0/a/c/451775/papa.jpg"','papa pastusa fresca y lavada');
 select *from Producto;
 
-<<<<<<< HEAD
--- Direcciones
-CALL Direcciones (3,'34','b sur','40°4246″N,74°021',2,2);
-CALL Direcciones (1,'36','diagonal 38',' 40°4246″N,74°021',2,2);
-select *from Direcciones;
-=======
 
-/*Comprra*/
+/*Compra*/
 CALL Compra (2,"50000","Confirmado",1);
 Select * From Compra;
 
 /*Com_Pro*/
-CALL Comp_Produc (1,2,"15","20000");
+CALL Comp_Produc (1,1,"15","20000");
 SELECT * FROM Comp_Produc;
 
 /*Remmbolsos*/
-
 CALL Reembolsos ("50000","El producto llego dañado, y por lo que pague se me hace caro",1,2);
 SELECT * FROM Reembolsos;
->>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
+

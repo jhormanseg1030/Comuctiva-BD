@@ -56,7 +56,7 @@ IN tel2 NUMERIC(20),
 IN ID_TipDocu TINYINT(3),
 IN correo VARCHAR(50),
 IN NumDoc VARCHAR(20),
-IN pas VARCHAR(10)
+IN pas VARCHAR(500)
 )
 BEGIN
 INSERT INTO Usuario (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password)
@@ -235,11 +235,7 @@ IN ID_Muni INT(10)
 )
 BEGIN
 INSERT INTO Barrio(ID_Barr_Vere,Nom,ID_Muni)
-<<<<<<< HEAD
-VALUES (Barr_Vere,Nom,ID_Muni);
-=======
 VALUES (ID_Barr_Vere,Nom,ID_Muni);
->>>>>>> d4a21ebe60088b5f8596b54b6a7f4a674f4f9c94
 END$$
 
 DELIMITER ;
