@@ -7,12 +7,14 @@ select *from Usuario;
 
 /*Pedidos*/
 CALL Pedidos (2,2,2);
-CALL Pedidos (2,3,1);
+CALL Pedidos (3,1,5);
+CALL Pedidos (1,5,1);
+CALL Pedidos (4,3,4);
 select *from Pedidos;
 
--- Descuentos
-CALL Descuentos ("¡Obtén un 20% de descuento en tu primera compra!","150000");
-select *from Descuentos;
+-- Descuentos 
+CALL Descuentos("¡Obtén un 20% de descuento!", 150000.00, 20);
+select*from descuentos;
 
 -- CALL Barrio
 CALL Barrio (3,"bohio",25817);
@@ -22,7 +24,6 @@ CALL Barrio (2,"Chaleche",25736);
 select *from Barrio;
 
 
-
 /*transportadora*/
 CALL Transportadora('servientrega', 'fedex', '123456789', 'contacto@servientrega.com', 'Calle 123', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '567891234', 'contacto@servientrega.com', 'Calle 220', 'www.servientrega.com');
@@ -30,46 +31,11 @@ CALL Transportadora('servientrega', 'fedex', '789456213', 'contacto@servientrega
 CALL Transportadora('servientrega', 'fedex', '555444252', 'contacto@servientrega.com', 'Calle 100', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '121212121', 'contacto@servientrega.com', 'Calle 150', 'www.servientrega.com');
 CALL Transportadora('servientrega', 'fedex', '018005005', 'contacto@servientrega.com', 'Calle 215', 'www.servientrega.com');
-select*from Transportadora;
+select *from transportadora;
 
-/*Guia de envio*/
-CALL Guia_de_Envio(1,1);
-CALL Guia_de_Envio(2,2);
-CALL Guia_de_Envio(1,3);
-CALL Guia_de_Envio(1,4);
-CALL Guia_de_Envio(1,5);
-CALL Guia_de_Envio(1,2);
+/*Guia de envio*/ /*Mantenimineto*/
+
 SELECT * FROM Guia_de_Envio;
-TRUNCATE TABLE Guia_de_Envio;
-
-
-/*ALTER TABLE pedidos DROP CONSTRAINT FK_Usuario;
-ALTER TABLE pedidos DROP CONSTRAINT FK_Guia_de_Envio;
-ALTER TABLE Pedi_Produc DROP CONSTRAINT FK_Pedi;
-TRUNCATE TABLE Pedidos;
-
--- pedi_produc
--- Agregar productos (total = 80,000)
-INSERT INTO Pedi_Produc ( ID_Product,ID_Pedido,cant, valor) VALUES
-(1,5,2, 30000), -- Producto sin descuento (60,000)
-(1,5,1, 50000); -- Producto con descuento (pero no aplica por monto bajo)
-
-
-SELECT *, valor*cant AS subtotal FROM Pedi_Produc ;
--- Verificar
-SELECT * FROM Pedi_Produc;*/
-
-
--- Descuentos
-/*CALL Descuentos ("¡Obtén un 20% de descuento en tu primera compra!","150000");
-SELECT fun_desc(160000); -- Debería devolver 10
-select *from Descuentos;*/
-
-
--- -- Direcciones
-CALL Direcciones (3,'34','b sur','40°4246″N,74°021',2,2);
-CALL Direcciones (1,'36','diagonal 38',' 40°4246″N,74°021',2,2);
-select *from Direcciones;
 
 
 /*R_Social*/
@@ -79,26 +45,16 @@ CALL R_Social(3,'jhorman','800','cajica',3);
 CALL R_Social(4,'julio','890','sibate',4);
 select *from R_Social;
 
-
-
-/*Tienda*/
-CALL Tienda(1,'tiendas don luis','fedex',1,1);
+/*Tienda*/ /*Arreglos*/
+CALL Tienda('tiendas don luis', 'fedex', 1, 1);
+CALL Tienda('tiendas don luis', 'fedex', 1, 1);
 select *from Tienda;
 
--- Producto
+-- ProductoDirecciones /*Arreglo*/
 CALL Producto(3,'Papa','2000','3',1,'src="https://www.herbazest.com/imgs/0/a/c/451775/papa.jpg"','papa pastusa fresca y lavada');
 select *from Producto;
 
-
-/*Compra*/
-CALL Compra (2,"50000","Confirmado",1);
-Select * From Compra;
-
-/*Com_Pro*/
-CALL Comp_Produc (1,1,"15","20000");
-SELECT * FROM Comp_Produc;
-
-/*Remmbolsos*/
-CALL Reembolsos ("50000","El producto llego dañado, y por lo que pague se me hace caro",1,2);
-SELECT * FROM Reembolsos;
-
+-- Direcciones
+CALL Direcciones (3,'34','b sur','40°4246″N,74°021',2,2);
+CALL Direcciones (1,'36','diagonal 38',' 40°4246″N,74°021',2,2);
+select *from Direcciones;

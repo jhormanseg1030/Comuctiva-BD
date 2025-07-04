@@ -2,18 +2,17 @@
 USE `comuctiva`;
 DROP procedure IF EXISTS `comuctiva`.`Descuentos`;
 ;
-																										
+
 DELIMITER $$
 USE `comuctiva`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Descuentos`(
-	IN Descr VARCHAR (50),
-    IN Valor1 DECIMAL (10,2)
+CREATE PROCEDURE Descuentos (
+    IN Descr VARCHAR(50),
+    IN Valor DECIMAL(10,2),  
+    IN descu INT
 )
 BEGIN
-	DECLARE valor1 Int;
-	Set valor1 = fun_desc(descu);
-	INSERT INTO Descuentos(Descripcion,Fec_Des,Valor1)
-    VALUES (Descr,NOW(),Valor1);
+    INSERT INTO Descuentos (Descripcion, Fec_Des, Valor, Descuento)  
+    VALUES (Descr, NOW(), Valor, descu);
 END$$
 
 DELIMITER ;
@@ -51,16 +50,16 @@ CREATE PROCEDURE `Usuario` (
 IN NomUsu VARCHAR(50),
 IN apell1 VARCHAR (50),
 IN apell2 VARCHAR(50),
-IN tel1 NUMERIC(20),
-IN tel2 NUMERIC(20),
+IN tel1 BINARY(20),
+IN tel2 BINARY(20),
 IN ID_TipDocu TINYINT(3),
 IN correo VARCHAR(50),
 IN NumDoc VARCHAR(20),
-IN pas VARCHAR(500)
+IN Password VARCHAR(10)
 )
 BEGIN
-INSERT INTO Usuario (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password)
-VALUES (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,AES_ENCRYPT(pas,'1234'));
+Insert into Usuario(NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password)
+VALUES (NomUsu,apell1,apell2,tel1,tel2,ID_TipDocu,correo,NumDoc,Password);
 END$$
 
 DELIMITER ;
@@ -79,8 +78,8 @@ IN ID_Guia INT(10)
 )
 BEGIN
 
-INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,ID_Estado,ID_Guia)
-VALUES (ID_Usuario,NOW(),Estado,ID_Guia);
+INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,Estado,ID_Guia)
+VALUES (ID_Usuario,now(),Estado,ID_Guia);
 END$$
 
 DELIMITER ;
@@ -120,7 +119,7 @@ NomProd VARCHAR(50),
 Valor DECIMAL(10,2),
 Cant NUMERIC(19,0),
 ID_Tienda INT(10),
-Imagen VARCHAR(100),
+Imagen VARCHAR(50),
 Descrip VARCHAR(50)
 )
 BEGIN
@@ -139,19 +138,19 @@ DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Reembolsos` (
 Valor NUMERIC(20,2),
-Motivo VARCHAR(100),
+Motivo VARCHAR(50),
 Estado VARCHAR(20),
 ID_Com_Produc INT(10)
 )
 BEGIN
 INSERT INTO Reembolsos(Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
-VALUES (NOW(),Valor,Motivo,NOW(),Estado,ID_Com_Produc);
+VALUES (NOW(),Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc);
 END$$
 
 DELIMITER ;
 ;
 
-/*Proceso de Guia de envio*/
+/*Proceso de Guia de envio*/ /*PENDIENTE*/
 USE `comuctiva`;
 DROP procedure IF EXISTS `Guia_de_Envio`;
 
@@ -163,7 +162,7 @@ Obser VARCHAR(50)
 )
 BEGIN
 
-INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,ID_Obser)
+INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,Obser)
 VALUES (ID_Transpor,NOW(),Obser);
 
 END$$
@@ -221,50 +220,71 @@ END$$
 
 DELIMITER ;
 
-/*Proceso de Barrio*/
-
+/*Proceso de Barrio*/ 
 USE comuctiva;
 DROP procedure IF EXISTS Barrio;
 
 DELIMITER $$
-USE comuctiva$$
+USE `comuctiva`$$
 CREATE PROCEDURE Barrio (
-IN ID_Barr_Vere INT(10),
-IN Nom VARCHAR(50),
-IN ID_Muni INT(10)
+    IN p_ID_Barr_Vere INT(10),
+    IN p_Nom VARCHAR(50),
+    IN p_ID_Muni INT(10)
 )
 BEGIN
-INSERT INTO Barrio(ID_Barr_Vere,Nom,ID_Muni)
-VALUES (ID_Barr_Vere,Nom,ID_Muni);
+    INSERT INTO Barrio(ID_Barr_Vere, Nom, ID_Muni)
+    VALUES (p_ID_Barr_Vere, p_Nom, p_ID_Muni);
 END$$
 
 DELIMITER ;
 
 /*Proceso de Tienda*/
-
-USE comuctiva;
-DROP procedure IF EXISTS Tienda;
+USE `comuctiva`;
+DROP PROCEDURE IF EXISTS `Tienda`;
 
 DELIMITER $$
-USE comuctiva$$
-CREATE PROCEDURE Tienda (
-IN ID_Direcc INT(10),
-IN NomT VARCHAR(50),
-IN Logo VARCHAR(50),
-IN ID_Usuario INT(10),
-IN ID_R_Social INT(10)
+USE `comuctiva`$$
+CREATE PROCEDURE `Tienda`(
+    IN p_NomT VARCHAR(50),
+    IN p_Logo VARCHAR(50),
+    IN p_ID_Usuario INT(10),
+    IN p_ID_R_Social INT(10)
 )
 BEGIN
-INSERT INTO Tienda(ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social)
-VALUES (ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social);
+    DECLARE v_usuario_existe INT DEFAULT 0;
+    DECLARE v_direccion_existe INT DEFAULT 0;
+    
+    -- 1. Validar que el usuario existe
+    SELECT COUNT(*) INTO v_usuario_existe FROM usuario WHERE ID_Usuario = p_ID_Usuario;
+    
+    IF v_usuario_existe = 0 THEN
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'El usuario especificado no existe';
+    END IF;
+    
+    -- 2. Buscar o crear dirección básica
+    SELECT COUNT(*) INTO v_direccion_existe 
+    FROM direcciones 
+    WHERE ID_Usuario = p_ID_Usuario;
+    
+    IF v_direccion_existe = 0 THEN
+        -- Insertar dirección mínima requerida
+        INSERT INTO direcciones (ID_Usuario, Direccion) 
+        VALUES (p_ID_Usuario, 'Dirección predeterminada');
+    END IF;
+    
+    -- 3. Insertar tienda (versión segura)
+    INSERT INTO Tienda (NomT, Logo, ID_Usuario, ID_R_Social)
+    VALUES (p_NomT, p_Logo, p_ID_Usuario, p_ID_R_Social)
+    ON DUPLICATE KEY UPDATE Logo = VALUES(Logo);
+    
+    SELECT LAST_INSERT_ID() AS ID_Tienda_Generado;
 END$$
-
 DELIMITER ;
 
-/*Proceso de Ingres_Produc*/
-USE comuctiva;
-DROP procedure IF EXISTS ` Ingres_Produc`;
 
+
+/*Proceso de Ingres_Produc*/
 DELIMITER $$
 USE comuctiva$$
 CREATE PROCEDURE ` Ingres_Produc`(
@@ -294,26 +314,6 @@ IN valor DECIMAL(10,3)
 BEGIN
 INSERT INTO Pedi_Produc(ID_Producto,ID_Pedido,cant,valor)
 VALUES (ID_Producto,ID_Pedido,cant,valor);
-END$$
-
-DELIMITER ;
-
-/*Comp_Produc*/
-
-USE `comuctiva`;
-DROP procedure IF EXISTS `Comp_Produc`;
-
-DELIMITER $$
-USE `comuctiva`$$
-CREATE PROCEDURE `Comp_Produc` (
-	IN ID_Compra INT,
-    IN ID_Producto INT,
-    IN Cant NUMERIC (19,2),
-    IN Valor DECIMAL (10,2)
-)
-BEGIN
-	INSERT INTO Comp_Produc (ID_Compra,ID_Producto,Cant,Valor)
-    VALUES (ID_Compra,ID_Producto,Cant,Valor);
 END$$
 
 DELIMITER ;

@@ -6,15 +6,16 @@ INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debi
 
 INSERT INTO Barr_Vere (Nombre) VALUES ("Barrio"),("Vereda"),("Sector");
 
-INSERT INTO Estado (estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
+INSERT INTO Pedidos (Estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
 
-INSERT INTO Obser (Obser) VALUES ("Delicado"),("Peligro"),("Fragil"),("Ligero"),("Pesado");
-
+INSERT INTO Guia_de_Envio (Obser) VALUES ("delicado"), ("peligro"), ("fragil"), ("ligero"), ("pesado"), ("delicado");
 /*Departamentos :D*/
+
 INSERT INTO Dep (ID_Dep,Nom) VALUES (11,"Bogotá, D.C.");
 INSERT INTO Dep (ID_Dep,Nom) VALUES (25,"Cundinamarca");
 
 /*Muni :D*/
+
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25183,"CHOCONTÁ",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25426,"MACHETA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25436,"MANTA",25);
@@ -133,7 +134,7 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25793,"TAUSA",25);
 INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25843,"UBATE",25);
 
 
-SELECT NomUsu,Password, cast(AES_DECRYPT(Password,'1234')AS CHAR) AS contraseña FROM Usuario
+
 
 
 

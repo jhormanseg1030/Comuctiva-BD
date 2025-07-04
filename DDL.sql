@@ -5,23 +5,24 @@ Use Comuctiva;
 /*Tablas Fuertes*/
 
 CREATE TABLE Tip_Doc(
-	ID_TipDocu TINYINT (3) PRIMARY KEY AUTO_INCREMENT,
+ID_TipDocu TINYINT (3) PRIMARY KEY AUTO_INCREMENT,
     Tipo VARCHAR (30) NOT NULL
 );
 CREATE TABLE Rol(
-	Id_Rol INT (10) PRIMARY KEY AUTO_INCREMENT,
+Id_Rol INT (10) PRIMARY KEY AUTO_INCREMENT,
     Nom_Rol VARCHAR (30)
 );
 CREATE TABLE Vias(
-	Id_Vias INT (10) PRIMARY KEY AUTO_INCREMENT,
+Id_Vias INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tipo VARCHAR (20) NOT NULL
 );
 CREATE TABLE Dep(
 	ID_Dep INT (10) PRIMARY KEY,
     Nom VARCHAR (100) NOT NULL
 );
+
 CREATE TABLE Transportadora(
-	Id_Transpor INT (10) PRIMARY KEY AUTO_INCREMENT,
+Id_Transpor INT (10) PRIMARY KEY AUTO_INCREMENT,
     NombreT VARCHAR (30) NOT NULL,
     Logo VARCHAR (30) NOT NULL,
     Telefono VARCHAR (20) NOT NULL,
@@ -30,46 +31,40 @@ CREATE TABLE Transportadora(
     Sitio_Web VARCHAR (50) NOT NULL
 );
 CREATE TABLE Unidad_Medida(
-	Id_Medida INT (10) PRIMARY KEY AUTO_INCREMENT,
+Id_Medida INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tip_Medida VARCHAR (20) NOT NULL
 );
 CREATE TABLE Descuentos(
-	ID_Descu INT (10)PRIMARY KEY AUTO_INCREMENT,
-	Descripcion VARCHAR (50) NOT NULL,
-	Fec_Des DATE NOT NULL,
+ID_Descu INT (10)PRIMARY KEY AUTO_INCREMENT,
+Descripcion VARCHAR (50) NOT NULL,
+Fec_Des DATE NOT NULL,
     Valor DECIMAL (10,2) NOT NULL
 );
 CREATE TABLE Tipo_De_Pago(
-	Id_TiPago INT (10) PRIMARY KEY AUTO_INCREMENT,
+Id_TiPago INT (10) PRIMARY KEY AUTO_INCREMENT,
     Tipos VARCHAR (20) NOT NULL
 );
 CREATE TABLE Barr_Vere(
-	ID_Barr_Vere INT(10) PRIMARY KEY AUTO_INCREMENT,
-	Nombre VARCHAR(20) NOT NULL
-);
-CREATE TABLE Estado(
-ID_Estado INT PRIMARY KEY AUTO_INCREMENT,
-estado VARCHAR(30)
-);
-CREATE TABLE Obser(
-ID_Obser INT PRIMARY KEY AUTO_INCREMENT,
-Obser VARCHAR(40)
+ID_Barr_Vere INT(10) PRIMARY KEY AUTO_INCREMENT,
+Nombre VARCHAR(20) NOT NULL
 );
 
+
 /*Tablas debiles*/
+
 CREATE TABLE Muni(
 	ID_Muni INT (10) PRIMARY KEY,
     Nom VARCHAR (50) NOT NULL,
 	ID_Dep INT (10)
 );
-CREATE TABLE Usuario(
 
+CREATE TABLE Usuario(
 ID_Usuario INT(10) PRIMARY KEY auto_increment,
 NomUsu VARCHAR(50) NOT NULL,
 apell1 VARCHAR (50) NOT NULL,
 apell2 VARCHAR(50),
-tel1 NUMERIC(20) NOT NULL,
-tel2 NUMERIC(20),
+tel1 BINARY(20) NOT NULL,
+tel2 BINARY(20),
 ID_TipDocu TINYINT(3),
 correo VARCHAR(50) NOT NULL,
 NumDoc VARCHAR(20) NOT NULL,
@@ -79,119 +74,109 @@ CREATE TABLE Pedidos(
 ID_Pedido INT(10) PRIMARY KEY auto_increment,
 ID_Usuario INT(10),
 FeHor_Ped TIMESTAMP NOT NULL,
-ID_Estado INT(10),
+Estado VARCHAR(20)NOT NULL,
 ID_Guia INT(10)
-
 );
-
 CREATE TABLE Compra(
-	ID_Compra INT(10) PRIMARY KEY auto_increment,
-	ID_TiPago INT(10),
-	total DECIMAL(10,2)NOT NULL,
-	Ref_Pago VARCHAR(30)NOT NULL,
-	Fec_com DATETIME NOT NULL,
-	ID_Pedido INT(10)
+ID_Compra INT(10) PRIMARY KEY auto_increment,
+ID_TiPago INT(10),
+total DECIMAL(10,2)NOT NULL,
+Ref_Pago VARCHAR(30)NOT NULL,
+Fec_com DATE NOT NULL,
+ID_Pedido INT(10)
 );
 CREATE TABLE Producto(
-	ID_Producto INT(10) PRIMARY KEY auto_increment,
-	ID_Medida INT(10),
-	NomProd VARCHAR(50)NOT NULL,
-	Valor DECIMAL(10,2) NOT NULL,
-	Cant NUMERIC(19,0) NOT NULL,
-	ID_Tienda INT(10),
-	Imagen VARCHAR(100),
-	Descrip VARCHAR(50)
+ID_Producto INT(10) PRIMARY KEY auto_increment,
+ID_Medida INT(10),
+NomProd VARCHAR(50)NOT NULL,
+Valor DECIMAL(10,2) NOT NULL,
+Cant NUMERIC(19,0) NOT NULL,
+ID_Tienda INT(10),
+Imagen VARCHAR(50),
+Descrip VARCHAR(50)
 );
 CREATE TABLE Rol_Usuario(
-	ID_Rol INT(10),
-	ID_Usuario INT(10),
-	Estado BINARY(1) NOT NULL
+ID_Rol INT(10),
+ID_Usuario INT(10),
+Estado BINARY(1) NOT NULL
 );
 CREATE TABLE Reembolsos(
-	ID_Reembolso INT(10) PRIMARY KEY auto_increment,
-	Fec_Soli DATETIME NOT NULL,
-	Valor NUMERIC(20,2) NOT NULL,
-	Motivo VARCHAR(100),
-	Fec_Resp DATETIME NOT NULL,
-	Estado VARCHAR(20) NOT NULL,
-	ID_Com_Produc INT(10)
+ID_Reembolso INT(10) PRIMARY KEY auto_increment,
+Fec_Soli DATE NOT NULL,
+Valor NUMERIC(20,2) NOT NULL,
+Motivo VARCHAR(50),
+Fec_Resp DATE NOT NULL,
+Estado VARCHAR(20) NOT NULL,
+ID_Com_Produc INT(10)
 );
 CREATE TABLE Comp_Produc(
-	ID_Com_Produc INT(10) PRIMARY KEY auto_increment,
-	ID_Compra INT(10),
-	ID_Producto INT(10),
-	Cant NUMERIC(19,2) NOT NULL,
-	Valor DECIMAL(10,2) NOT NULL
+ID_Com_Produc INT(10) PRIMARY KEY auto_increment,
+ID_Compra INT(10),
+ID_Producto INT(10),
+Cant NUMERIC(19,2) NOT NULL,
+Valor DECIMAL(10,2) NOT NULL
 );
 CREATE TABLE Guia_de_Envio (
 ID_Guia INT (10) PRIMARY KEY auto_increment,
 ID_Transpor INT (10),
-Fec_Env TIMESTAMP NOT NULL,
-ID_Obser INT
+Fec_Env DATE NOT NULL,
+Obser VARCHAR(50) NOT NULL
 );
 CREATE TABLE R_Social (
-ID_R_Social INT (10) PRIMARY KEY auto_increment,
-Nombre VARCHAR (50) NOT NULL,
-NIT  VARCHAR(50)NOT NULL,
-Sucur VARCHAR(50) NOT NULL,
-ID_Usuario INT (10)
+	ID_R_Social INT (10) PRIMARY KEY auto_increment,
+	Nombre VARCHAR (50) NOT NULL,
+    NIT  VARCHAR(50)NOT NULL,
+    Sucur VARCHAR(50) NOT NULL,
+    ID_Usuario INT (10)
 );
 CREATE TABLE Direcciones (
-	ID_Direcc INT(10)PRIMARY KEY auto_increment,
-	ID_Vias INT(10),
-	num VARCHAR(10)NOT NULL, 
-	comple VARCHAR(50) NOT NULL,
-	Ubi_Geo VARCHAR (20) NOT NULL,
-	ID_Usuario INT(10),
-	ID_Barrio INT(10)
+ID_Direcc INT(10)PRIMARY KEY auto_increment,
+ID_Vias INT(10),
+num VARCHAR(10)NOT NULL, 
+comple VARCHAR(50) NOT NULL,
+Ubi_Geo VARCHAR (20) NOT NULL,
+ID_Usuario INT(10),
+ID_Barrio INT(10)
 );
 CREATE TABLE Barrio(
-	ID_Barrio INT(10)PRIMARY KEY auto_increment,
-	ID_Barr_Vere INT(10),
-	Nom VARCHAR(50)NOT NULL,
-	ID_Muni INT(10)
-	);
+ID_Barrio INT(10)PRIMARY KEY auto_increment,
+ID_Barr_Vere INT(10),
+Nom VARCHAR(50)NOT NULL,
+ID_Muni INT(10)
+);
 CREATE TABLE Produc_Desc(
-	ID_Producto INT(10),
-	ID_Descu INT(10)
+ID_Producto INT(10),
+ID_Descu INT(10)
 );
 CREATE TABLE Ingres_Produc(
-	ID_Producto INT(10),
-	ID_Ingreso INT(10),
-	cant NUMERIC (20,2)
-	);
+ID_Producto INT(10),
+ID_Ingreso INT(10),
+cant NUMERIC (20,2)
+);
 CREATE TABLE Tienda(
-	ID_Tienda INT(10)PRIMARY KEY auto_increment,
-	ID_Direcc INT(10),
-	NomT VARCHAR(50),
-	Logo VARCHAR(50),
-	ID_Usuario INT(10),
-	ID_R_Social INT(10)
+ID_Tienda INT(10)PRIMARY KEY auto_increment,
+ID_Direcc INT(10),
+NomT VARCHAR(50),
+Logo VARCHAR(50),
+ID_Usuario INT(10),
+ID_R_Social INT(10)
 );
 
 CREATE TABLE Pedi_Produc(
-	ID_Producto INT(10),
-	ID_Pedido INT(10),
-	cant NUMERIC(30,0)NOT NULL,
-	valor DECIMAL(10,3) NOT NULL
+ID_Producto INT(10),
+ID_Pedido INT(10),
+cant NUMERIC(30,0)NOT NULL,
+valor DECIMAL(10,3) NOT NULL
 );
 
 CREATE TABLE Ingresos(
 	ID_Ingreso INT (10) PRIMARY KEY,
-    Fecha DATETIME,
+    Fecha DATE,
     ID_Usuario INT (10),
-    Obser VARCHAR(50)
-);
-CREATE TABLE Carrito(
-
-	ID_Carrito INT (10) PRIMARY KEY AUTO_INCREMENT,
-	ID_Usuario INT NOT NULL,
-    ID_Producto INT NOT NULL,
-    Cantidad INT NOT NULL DEFAULT 1,
-    Fecha_Agre TIMESTAMP
+    Obser VARCHAR (50)
 );
 
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 /*Foreign Keys*/
 
 /*Usuario*/
@@ -209,20 +194,11 @@ ALTER TABLE Pedidos
 ADD CONSTRAINT FK_Guia_de_Envio
 FOREIGN KEY (ID_Guia) REFERENCES Guia_de_Envio(ID_Guia);
 
-ALTER TABLE Pedidos
-ADD CONSTRAINT FK_Estado
-FOREIGN KEY (ID_Estado) REFERENCES Estado(ID_Estado);
-
-
 /*Guia de envio*/
 
 ALTER TABLE Guia_de_Envio
 ADD CONSTRAINT FK_Transportadora
 FOREIGN KEY (ID_Transpor) REFERENCES Transportadora(ID_Transpor);
-
-ALTER TABLE Guia_de_Envio
-ADD CONSTRAINT FK_Obser
-FOREIGN KEY (ID_Obser) REFERENCES Obser(ID_Obser);
 
 /*Rol_Usuario*/
 
